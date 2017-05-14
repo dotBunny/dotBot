@@ -1,6 +1,6 @@
 //http://ptbogamejam.com/data/latest.json
 
-package handlers
+package commands
 
 import (
 	"bytes"
@@ -35,8 +35,8 @@ type GameJamLatest struct {
 	LatestVideo   string  `json:"latest_video"`
 }
 
-// HandleGameJam responds in the channel with the next PTBO Game Jam information
-func HandleGameJam(session *discordgo.Session, message *discordgo.MessageCreate) {
+// GameJam responds in the channel with the next PTBO Game Jam information
+func GameJam(session *discordgo.Session, message *discordgo.MessageCreate) {
 
 	var data GameJamLatest
 	Helpers.GetJSON("http://ptbogamejam.com/data/latest.json", &data)
@@ -62,6 +62,6 @@ func HandleGameJam(session *discordgo.Session, message *discordgo.MessageCreate)
 				Value:  Helpers.Clean(data.Location),
 				Inline: true}},
 		Thumbnail: &discordgo.MessageEmbedThumbnail{
-			URL: Helpers.GetIconGameJam()},
+			URL: Helpers.GameJamIconURI()},
 	})
 }

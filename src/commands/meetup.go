@@ -1,4 +1,4 @@
-package handlers
+package commands
 
 import (
 	Helpers "../helpers"
@@ -6,8 +6,8 @@ import (
 	"github.com/mmcdole/gofeed"
 )
 
-// HandleMeetup responds in the channel with the next PTBO Game Dev Meetup information
-func HandleMeetup(session *discordgo.Session, message *discordgo.MessageCreate) {
+// Meetup responds in the channel with the next PTBO Game Dev Meetup information
+func Meetup(session *discordgo.Session, message *discordgo.MessageCreate) {
 
 	fp := gofeed.NewParser()
 	feed, _ := fp.ParseURL("https://www.meetup.com/PTBOGameDev/events/rss/")
@@ -15,7 +15,7 @@ func HandleMeetup(session *discordgo.Session, message *discordgo.MessageCreate) 
 	foundImage, imageElement := Helpers.GetElement("img", feed.Items[0].Description, 0)
 	foundTimeBlock, timeElement := Helpers.GetElementContent("p", feed.Items[0].Description, 4)
 
-	imageSource := Helpers.GetIconGameDev()
+	imageSource := Helpers.GameDevMeetupIconURI()
 	nextEvent := "Unknown"
 
 	if foundTimeBlock {

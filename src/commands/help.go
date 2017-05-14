@@ -1,11 +1,11 @@
-package handlers
+package commands
 
 import (
 	"github.com/bwmarrin/discordgo"
 )
 
-// HandleCommands responds to a user privately with information about the bots commands
-func HandleCommands(session *discordgo.Session, message *discordgo.MessageCreate) {
+// Help responds to a user privately with information about the bots commands
+func Help(session *discordgo.Session, message *discordgo.MessageCreate) {
 
 	iconPath := "https://dl.dropboxusercontent.com/u/118962/dotBunny/dotBot/icon.png"
 
@@ -15,6 +15,10 @@ func HandleCommands(session *discordgo.Session, message *discordgo.MessageCreate
 		Description: "All commands respond in the channel issued in and can be sent directly.",
 		Color:       1974564,
 		Fields: []*discordgo.MessageEmbedField{
+			&discordgo.MessageEmbedField{
+				Name:   ".discord",
+				Value:  "Responds back with the invite link for Discord",
+				Inline: false},
 			&discordgo.MessageEmbedField{
 				Name:   ".gamejam",
 				Value:  "Responds back with information on the next PTBO Game Jam",
