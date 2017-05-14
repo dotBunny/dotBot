@@ -6,6 +6,7 @@ import (
 	"github.com/mmcdole/gofeed"
 )
 
+// HandleMeetup responds in the channel with the next PTBO Game Dev Meetup information
 func HandleMeetup(session *discordgo.Session, message *discordgo.MessageCreate) {
 
 	fp := gofeed.NewParser()
