@@ -21,6 +21,10 @@ func messageHandler(session *discordgo.Session, message *discordgo.MessageCreate
 
 	// Check and Dispatch!
 	switch command {
+	case ".commands":
+		Handlers.HandleCommands(session, message)
+	case ".help":
+		Handlers.HandleHelp(session, message)
 	case ".ping":
 		Handlers.HandlePing(session, message)
 	case ".meetup":
