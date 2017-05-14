@@ -16,6 +16,10 @@ func HandleCommands(session *discordgo.Session, message *discordgo.MessageCreate
 		Color:       1974564,
 		Fields: []*discordgo.MessageEmbedField{
 			&discordgo.MessageEmbedField{
+				Name:   ".gamejam",
+				Value:  "Responds back with information on the next PTBO Game Jam",
+				Inline: false},
+			&discordgo.MessageEmbedField{
 				Name:   ".meetup",
 				Value:  "Responds back with information on the next PTBO Game Dev Meetup",
 				Inline: false},

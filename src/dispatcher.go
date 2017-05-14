@@ -23,8 +23,8 @@ func messageHandler(session *discordgo.Session, message *discordgo.MessageCreate
 	switch command {
 	case ".commands":
 		Handlers.HandleCommands(session, message)
-	case ".help":
-		Handlers.HandleHelp(session, message)
+	case ".gamejam":
+		Handlers.HandleGameJam(session, message)
 	case ".ping":
 		Handlers.HandlePing(session, message)
 	case ".meetup":

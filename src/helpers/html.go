@@ -1,4 +1,4 @@
-package handlers
+package helpers
 
 import (
 	"strings"
@@ -105,4 +105,11 @@ func GetElement(tag string, content string, offset int) (found bool, element htm
 			}
 		}
 	}
+}
+
+// Clean content, removing special codes
+func Clean(content string) (cleaned string) {
+	cleaned = content
+	cleaned = strings.Replace(content, "&amp;", "&", -1)
+	return cleaned
 }

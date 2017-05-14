@@ -15,7 +15,7 @@ func HandleMeetup(session *discordgo.Session, message *discordgo.MessageCreate) 
 	foundImage, imageElement := Helpers.GetElement("img", feed.Items[0].Description, 0)
 	foundTimeBlock, timeElement := Helpers.GetElementContent("p", feed.Items[0].Description, 4)
 
-	imageSource := "https://secure.meetupstatic.com/photos/event/1/1/2/9/event_457804393.jpeg"
+	imageSource := Helpers.GetIconGameDev()
 	nextEvent := "Unknown"
 
 	if foundTimeBlock {
