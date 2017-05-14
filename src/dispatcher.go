@@ -27,10 +27,12 @@ func messageHandler(session *discordgo.Session, message *discordgo.MessageCreate
 		Command.GameJam(session, message)
 	case ".help":
 		Command.Help(session, message)
-	case ".ping":
-		Command.Ping(session, message)
 	case ".meetup":
 		Command.Meetup(session, message)
+	case ".ping":
+		Command.Ping(session, message)
+	case ".unity":
+		Command.Unity(session, message)
 	default:
 		return
 	}

@@ -30,6 +30,10 @@ func Help(session *discordgo.Session, message *discordgo.MessageCreate) {
 			&discordgo.MessageEmbedField{
 				Name:   ".ping",
 				Value:  "Responds back with the expected \"Pong!\"",
+				Inline: false},
+			&discordgo.MessageEmbedField{
+				Name:   ".unity",
+				Value:  "Searches Unity documentation for you!",
 				Inline: false}},
 		Thumbnail: &discordgo.MessageEmbedThumbnail{
 			URL: iconPath},
