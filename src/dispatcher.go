@@ -21,6 +21,8 @@ func messageHandler(session *discordgo.Session, message *discordgo.MessageCreate
 
 	// Check and Dispatch!
 	switch command {
+	case ".discord":
+		Command.Discord(session, message)
 	case ".gamejam":
 		Command.GameJam(session, message)
 	case ".help":
