@@ -4,6 +4,8 @@ import (
 	"fmt"
 	"log"
 	"os"
+	"path"
+	"path/filepath"
 
 	"github.com/BurntSushi/toml"
 	"github.com/bwmarrin/discordgo"
@@ -21,7 +23,6 @@ type Config struct {
 }
 
 func main() {
-
 	var config = ReadConfig()
 	Token = config.Token
 
@@ -59,13 +60,22 @@ func main() {
 
 // ReadConfig gets the local config file
 func ReadConfig() Config {
-	_, err := os.Stat("./config.toml")
+
+	dir, pathError := filepath.Abs(filepath.Dir(os.Args[0]))
+	if pathError != nil {
+		log.Fatal("Unable to determine path of application")
+	}
+
+	configPath := path.Join(dir, "config.toml")
+
+	_, err := os.Stat(configPath)
+
 	if err != nil {
-		log.Fatal("Config file is missing: ", "./config.toml")
+		log.Fatal("Config file is missing: ", configPath)
 	}
 
 	var config Config
-	if _, err := toml.DecodeFile("./config.toml", &config); err != nil {
+	if _, err := toml.DecodeFile(configPath, &config); err != nil {
 		log.Fatal(err)
 	}
 
