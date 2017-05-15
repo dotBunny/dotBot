@@ -1,4 +1,4 @@
-***REMOVED***
-***REMOVED***
-***REMOVED***
-***REMOVED*** -t MzEzMTMzMTY3OTg3MTMwMzY4.C_lLgA.r4OmSavfcb3d6AHAJJ01O5K1K2o
+#!/bin/bash
+cd "$(dirname "$0")"
+go build -o dot ./src
+./dot

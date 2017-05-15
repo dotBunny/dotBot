@@ -1,9 +1,11 @@
 package main
 
 import (
-	"flag"
 	"fmt"
+	"log"
+	"os"
 
+	"github.com/BurntSushi/toml"
 	"github.com/bwmarrin/discordgo"
 )
 
@@ -13,13 +15,15 @@ var (
 	BotID string
 )
 
-func init() {
-
-	flag.StringVar(&Token, "t", "", "Bot Token")
-	flag.Parse()
+// Config is an external config type
+type Config struct {
+	Token string
 }
 
 func main() {
+
+	var config = ReadConfig()
+	Token = config.Token
 
 	// Create a new Discord session using the provided bot token.
 	dg, err := discordgo.New("Bot " + Token)
@@ -51,4 +55,19 @@ func main() {
 	// Simple way to keep program running until CTRL-C is pressed.
 	<-make(chan struct{})
 	return
+}
+
+// ReadConfig gets the local config file
+func ReadConfig() Config {
+	_, err := os.Stat("./config.toml")
+	if err != nil {
+		log.Fatal("Config file is missing: ", "./config.toml")
+	}
+
+	var config Config
+	if _, err := toml.DecodeFile("./config.toml", &config); err != nil {
+		log.Fatal(err)
+	}
+
+	return config
 }
